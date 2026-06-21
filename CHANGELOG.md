@@ -23,6 +23,12 @@ _Internal development log. Updated by Claude after every completed task. One row
 | 14 | GSAP particle interaction | Built CoolInteraction.tsx — canvas-based particle system with 120 floating ASCII chars, dots and numbers in accent gold. Hover slows particles via GSAP speed tween. Click-and-release fires a ripple wave that pushes nearby particles outward. Replaced placeholder image in AnimationSection. Installed gsap. | Feature | components/CoolInteraction.tsx, components/sections/AnimationSection.tsx, package.json |
 | 13 | Width-fill scaling + member list numbering | Changed ScaleWrapper to scale by viewport width only (was using min of width/height, which left a gap on the right when browser chrome reduced viewport height). Members list numbering fixed: ol/li flex display overrides list-item and kills decimal markers — switched to block layout with margin-top spacing and display:block on name/url spans. | Bug Fix | components/ScaleWrapper.tsx, components/sections/GuildSection.module.css |
 
+## Session 2 — 2026-06-22
+
+| # | Title | Description | Type | Files Changed |
+|---|-------|-------------|------|---------------|
+| 1 | Data layer + ring mechanics | Installed gray-matter. Created content/sites/ with 5 dummy member markdown files. Built lib/sites.ts (reads + parses all .md files, returns typed Site[]). Built lib/ring.ts (getRingNeighbors returns prev/next by alphabetical slug with wrap-around). Wired getSites() into GuildSection replacing hardcoded MEMBERS array. | Feature | content/sites/*.md, lib/sites.ts, lib/ring.ts, components/sections/GuildSection.tsx, package.json |
+
 ---
 
 _Types: Setup · Feature · Bug Fix · Update · Refactor · Config · Copy_

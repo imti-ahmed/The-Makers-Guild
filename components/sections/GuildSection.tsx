@@ -1,21 +1,10 @@
 import { Plus, GitFork, CaretRight } from "@phosphor-icons/react/dist/ssr";
+import { getSites } from "@/lib/sites";
 import styles from "./GuildSection.module.css";
 
-const MEMBERS = [
-  { name: "Imtiyaz Ahmed", url: "https://www.imtiyazahmed.com" },
-  { name: "Jia Chen", url: "https://www.jia.build" },
-  { name: "Edoardo Lunardi", url: "https://www.edoardolunardi.dev/" },
-  { name: "Mark Zuckerberg", url: "https://www.irritatedmarky.dev" },
-  { name: "Elon Musk", url: "https://www.elonmusk.com" },
-  { name: "Pablo Stanley", url: "https://www.pablo.me" },
-  { name: "Sheldon Cooper", url: "https://www.sheldon.bazinga" },
-  { name: "Rachel Tan", url: "https://www.rachelartwork.com" },
-  { name: "Zoe Chin", url: "https://www.zoechin.com" },
-  { name: "Queenie Hsioa", url: "https://www.queenie.works" },
-  { name: "Mariano Pascual", url: "https://www.marianopascual.me/" },
-];
-
 export default function GuildSection() {
+  const members = getSites();
+
   return (
     <div className={styles.container}>
       {/* Guild Info */}
@@ -35,8 +24,8 @@ export default function GuildSection() {
       {/* Members List */}
       <div className={styles.membersListWrapper}>
         <ol className={styles.membersList}>
-          {MEMBERS.map((member) => (
-            <li key={member.url} className={styles.memberItem}>
+          {members.map((member) => (
+            <li key={member.slug} className={styles.memberItem}>
               <span className={styles.memberName}>{member.name}</span>
               <span className={styles.memberUrl}>{member.url}</span>
             </li>
