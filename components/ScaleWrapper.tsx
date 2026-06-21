@@ -3,7 +3,7 @@
 import { useEffect, useRef } from 'react';
 
 const DESIGN_WIDTH = 1920;
-const DESIGN_HEIGHT = 1080;
+const DESIGN_HEIGHT = 1178;
 
 export default function ScaleWrapper({ children }: { children: React.ReactNode }) {
   const outerRef = useRef<HTMLDivElement>(null);

@@ -11,7 +11,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 43px;
+  height: 48px;
   padding: var(--space-3) var(--space-6);
   border: 1px solid var(--color-border);
   margin-bottom: -1px;
@@ -36,7 +36,7 @@
 /* ── Image Strip ─────────────────────────────────── */
 
 .imageSection {
-  height: 238px;
+  height: 257px;
   padding: var(--space-6);
   border: 1px solid var(--color-border);
   overflow: hidden;
@@ -46,7 +46,7 @@
 .track {
   display: flex;
   gap: var(--space-1);
-  height: 186px;
+  height: 201px;
   width: max-content;
   animation: marquee 40s linear infinite;
   will-change: transform;
@@ -57,7 +57,7 @@
 }
 
 .imageItem {
-  height: 186px;
+  height: 201px;
   flex-shrink: 0;
 }
 

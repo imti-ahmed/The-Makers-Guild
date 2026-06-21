@@ -1,6 +1,6 @@
 .container {
   width: 482px;
-  height: 625px;
+  height: 678px;
   display: flex;
   flex-direction: column;
 }
@@ -11,7 +11,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 43px;
+  height: 48px;
   padding: var(--space-3) var(--space-6);
   border: 1px solid var(--color-border);
   background-color: var(--color-surface);
@@ -54,7 +54,7 @@
 
 .coolInteraction {
   position: relative;
-  height: 583px;
+  height: 631px;
   border: 1px solid var(--color-border);
   flex-shrink: 0;
   overflow: hidden;
