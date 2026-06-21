@@ -33,7 +33,7 @@
 
 .statIcon {
   flex-shrink: 0;
-  color: var(--color-text-secondary);
+  color: var(--color-text-primary);
 }
 
 .statLabel {
@@ -41,13 +41,13 @@
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-regular);
   line-height: var(--line-height-sm);
-  color: var(--color-text-secondary);
+  color: var(--color-text-primary);
   white-space: nowrap;
 }
 
 .headerIcon {
   flex-shrink: 0;
-  color: var(--color-text-secondary);
+  color: var(--color-text-primary);
 }
 
 /* ── Cool Interaction ────────────────────────────── */
