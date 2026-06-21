@@ -36,7 +36,8 @@
 
 html,
 body {
-  overflow: hidden;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
   background-color: var(--color-bg);
   color: var(--color-text-primary);
   font-family: var(--font-family-base);
@@ -44,4 +45,8 @@ body {
   font-weight: var(--font-weight-regular);
   line-height: var(--line-height-md);
   -webkit-font-smoothing: antialiased;
+}
+
+::-webkit-scrollbar {
+  display: none;
 }
