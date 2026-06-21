@@ -11,10 +11,7 @@ export default function ScaleWrapper({ children }: { children: React.ReactNode }
 
   useEffect(() => {
     const update = () => {
-      const scale = Math.min(
-        window.innerWidth / DESIGN_WIDTH,
-        window.innerHeight / DESIGN_HEIGHT
-      );
+      const scale = window.innerWidth / DESIGN_WIDTH;
       if (innerRef.current) {
         innerRef.current.style.transform = `scale(${scale})`;
       }
