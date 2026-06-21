@@ -5,10 +5,12 @@ import GallerySection from "@/components/sections/GallerySection";
 import GuildSection from "@/components/sections/GuildSection";
 import JoinSection from "@/components/sections/JoinSection";
 import RequirementSection from "@/components/sections/RequirementSection";
+import ScaleWrapper from "@/components/ScaleWrapper";
 import styles from "./page.module.css";
 
 export default function Home() {
   return (
+    <ScaleWrapper>
     <main className={styles.page}>
       <div className={styles.content}>
 
@@ -39,5 +41,6 @@ export default function Home() {
 
       </div>
     </main>
+    </ScaleWrapper>
   );
 }
