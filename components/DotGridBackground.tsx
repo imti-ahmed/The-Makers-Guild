@@ -3,13 +3,13 @@
 import { useEffect, useRef } from 'react';
 import { createNoise3D } from 'simplex-noise';
 
-const GRID_SPACING = 14;
-const NOISE_SCALE = 0.006;
-const TIME_SPEED = 0.003;
-const BASE_SIZE = 1.5;
-const MAX_SIZE = 3.0;
+const GRID_SPACING = 8;
+const NOISE_SCALE = 0.004;
+const TIME_SPEED = 0.015;
+const BASE_SIZE = 2;
+const MAX_SIZE = 4;
 const MOUSE_RADIUS = 100;
-const OPACITY_THRESHOLD = 0.35;
+const OPACITY_THRESHOLD = 0.22;
 
 interface Dot {
   x: number;
@@ -36,9 +36,10 @@ export default function DotGridBackground({ className }: { className?: string })
       const H = canvas.offsetHeight;
       canvas.width = W;
       canvas.height = H;
+      ctx.imageSmoothingEnabled = false;
       dots = [];
-      const offsetX = (W % GRID_SPACING) / 2;
-      const offsetY = (H % GRID_SPACING) / 2;
+      const offsetX = Math.round((W % GRID_SPACING) / 2);
+      const offsetY = Math.round((H % GRID_SPACING) / 2);
       const cols = Math.ceil(W / GRID_SPACING) + 1;
       const rows = Math.ceil(H / GRID_SPACING) + 1;
       for (let r = 0; r < rows; r++) {
@@ -71,8 +72,11 @@ export default function DotGridBackground({ className }: { className?: string })
 
         if (opacity <= 0.01) continue;
 
+        const px = Math.round(size);
+        const x = dot.x - (px >> 1);
+        const y = dot.y - (px >> 1);
         ctx.fillStyle = `rgba(216,216,216,${opacity})`;
-        ctx.fillRect(dot.x - size / 2, dot.y - size / 2, size, size);
+        ctx.fillRect(x, y, px, px);
       }
 
       time += TIME_SPEED;
