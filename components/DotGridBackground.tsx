@@ -20,12 +20,10 @@ interface Ripple { x: number; y: number; radius: number; maxRadius: number; }
 
 export default function DotGridBackground({ className }: { className?: string }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const pillRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const canvas = canvasRef.current;
-    const pill = pillRef.current;
-    if (!canvas || !pill) return;
+    if (!canvas) return;
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
@@ -116,15 +114,11 @@ export default function DotGridBackground({ className }: { className?: string })
       const relY = (e.clientY - rect.top) * (canvas.height / rect.height);
       mouse.x = relX;
       mouse.y = relY;
-
-      pill.style.opacity = '1';
-      pill.style.transform = `translate(${relX + 14}px, ${relY + 14}px)`;
     };
 
     const onMouseLeave = () => {
       mouse.x = -9999;
       mouse.y = -9999;
-      pill.style.opacity = '0';
     };
 
     const onMouseUp = (e: MouseEvent) => {
@@ -152,34 +146,8 @@ export default function DotGridBackground({ className }: { className?: string })
     <div className={className} style={{ position: 'absolute', inset: 0 }}>
       <canvas
         ref={canvasRef}
-        style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', display: 'block', cursor: 'none' }}
+        style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', display: 'block' }}
       />
-      <div
-        ref={pillRef}
-        style={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          pointerEvents: 'none',
-          opacity: 0,
-          transition: 'opacity 0.15s',
-        }}
-      >
-        <span style={{
-          display: 'inline-block',
-          border: '1px solid rgba(216,216,216,0.4)',
-          borderRadius: '999px',
-          padding: '5px 14px',
-          fontSize: '11px',
-          letterSpacing: '0.1em',
-          color: '#ffffff',
-          backgroundColor: '#181818',
-          whiteSpace: 'nowrap',
-          userSelect: 'none',
-        }}>
-          CLICK HERE
-        </span>
-      </div>
     </div>
   );
 }
