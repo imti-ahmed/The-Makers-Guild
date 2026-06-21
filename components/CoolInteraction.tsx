@@ -3,25 +3,14 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 
-const CHARS = [
-  '·', '∙', '.', '○', '◦', '×', '+', '*',
-  '0', '1', '2', '3', '7', '8', '9',
-  '#', '@', '!', '%', '&', '/', '\\', '_', '|',
-];
-
-const ACCENT = '157, 137, 78';
-const COUNT = 120;
+const COUNT = 700;
+const BASE_SPEED = 0.5;
 
 interface Particle {
   x: number;
   y: number;
-  vx: number;
-  vy: number;
-  baseVx: number;
-  baseVy: number;
-  char: string;
-  size: number;
   opacity: number;
+  size: number;
 }
 
 export default function CoolInteraction() {
@@ -38,130 +27,97 @@ export default function CoolInteraction() {
     canvas.width = W;
     canvas.height = H;
 
-    // Particles
-    const particles: Particle[] = Array.from({ length: COUNT }, () => {
-      const angle = Math.random() * Math.PI * 2;
-      const speed = 0.2 + Math.random() * 0.5;
-      const vx = Math.cos(angle) * speed;
-      const vy = Math.sin(angle) * speed;
-      return {
-        x: Math.random() * W,
-        y: Math.random() * H,
-        vx,
-        vy,
-        baseVx: vx,
-        baseVy: vy,
-        char: CHARS[Math.floor(Math.random() * CHARS.length)],
-        size: 9 + Math.random() * 9,
-        opacity: 0.1 + Math.random() * 0.35,
-      };
-    });
+    const particles: Particle[] = Array.from({ length: COUNT }, () => ({
+      x: Math.random() * W,
+      y: Math.random() * H,
+      opacity: 0.04 + Math.random() * 0.5,
+      size: 0.8 + Math.random() * 1.4,
+    }));
 
+    const pushes = particles.map(() => ({ vx: 0, vy: 0 }));
     const state = { speed: 1 };
     const ripple = { active: false, x: 0, y: 0, radius: 0, maxRadius: 0, opacity: 0 };
-    let mouseDownPos = { x: 0, y: 0 };
 
-    // Hover slow
-    const onMouseEnter = () => {
-      gsap.to(state, { speed: 0.15, duration: 0.8, ease: 'power2.out' });
-    };
-    const onMouseLeave = () => {
-      gsap.to(state, { speed: 1, duration: 1.5, ease: 'power2.out' });
+    let t = Math.random() * 100;
+
+    const flowAngle = (x: number, y: number, time: number) => {
+      const s = 0.0025;
+      return (
+        Math.sin(x * s + time * 0.4) * Math.cos(y * s + time * 0.25) * Math.PI * 2.5 +
+        Math.sin((x - y) * s * 0.6 + time * 0.15) * Math.PI
+      );
     };
 
-    // Click hold + release ripple
-    const onMouseDown = (e: MouseEvent) => {
-      const rect = canvas.getBoundingClientRect();
-      mouseDownPos = {
-        x: (e.clientX - rect.left) / (rect.width / W),
-        y: (e.clientY - rect.top) / (rect.height / H),
-      };
-    };
+    const onMouseEnter = () => gsap.to(state, { speed: 0.12, duration: 1, ease: 'power2.out' });
+    const onMouseLeave = () => gsap.to(state, { speed: 1, duration: 2, ease: 'power2.out' });
 
     const onMouseUp = (e: MouseEvent) => {
       const rect = canvas.getBoundingClientRect();
-      const rx = (e.clientX - rect.left) / (rect.width / W);
-      const ry = (e.clientY - rect.top) / (rect.height / H);
+      const rx = (e.clientX - rect.left) * (W / rect.width);
+      const ry = (e.clientY - rect.top) * (H / rect.height);
 
-      // Ripple ring
       ripple.active = true;
       ripple.x = rx;
       ripple.y = ry;
       ripple.radius = 0;
-      ripple.opacity = 0.6;
+      ripple.opacity = 0.4;
       ripple.maxRadius = Math.sqrt(W * W + H * H);
 
       gsap.killTweensOf(ripple);
       gsap.to(ripple, {
         radius: ripple.maxRadius,
         opacity: 0,
-        duration: 1.4,
+        duration: 1.6,
         ease: 'power2.out',
         onComplete: () => { ripple.active = false; },
       });
 
-      // Push particles
-      particles.forEach((p) => {
+      particles.forEach((p, i) => {
         const dx = p.x - rx;
         const dy = p.y - ry;
         const dist = Math.sqrt(dx * dx + dy * dy) || 1;
-        const maxForce = 350;
-        if (dist < maxForce) {
-          const force = ((maxForce - dist) / maxForce) * 6;
-          const nx = dx / dist;
-          const ny = dy / dist;
-          gsap.killTweensOf(p);
-          gsap.to(p, {
-            vx: p.baseVx + nx * force,
-            vy: p.baseVy + ny * force,
-            duration: 0.2,
-            ease: 'power3.out',
-            onComplete: () => {
-              gsap.to(p, {
-                vx: p.baseVx,
-                vy: p.baseVy,
-                duration: 1.8,
-                ease: 'power2.out',
-              });
-            },
-          });
+        if (dist < 280) {
+          const force = ((280 - dist) / 280) * 6;
+          gsap.killTweensOf(pushes[i]);
+          pushes[i].vx = (dx / dist) * force;
+          pushes[i].vy = (dy / dist) * force;
+          gsap.to(pushes[i], { vx: 0, vy: 0, duration: 2.2, ease: 'power2.out' });
         }
       });
     };
 
     canvas.addEventListener('mouseenter', onMouseEnter);
     canvas.addEventListener('mouseleave', onMouseLeave);
-    canvas.addEventListener('mousedown', onMouseDown);
     canvas.addEventListener('mouseup', onMouseUp);
 
-    // Render loop
     let rafId: number;
 
     const draw = () => {
+      t += 0.004 * state.speed;
       ctx.clearRect(0, 0, W, H);
 
-      // Ripple ring
       if (ripple.active && ripple.radius > 0) {
         ctx.beginPath();
         ctx.arc(ripple.x, ripple.y, ripple.radius, 0, Math.PI * 2);
-        ctx.strokeStyle = `rgba(${ACCENT}, ${ripple.opacity})`;
-        ctx.lineWidth = 1.5;
+        ctx.strokeStyle = `rgba(216, 216, 216, ${ripple.opacity})`;
+        ctx.lineWidth = 1;
         ctx.stroke();
       }
 
-      // Particles
-      particles.forEach((p) => {
-        p.x += p.vx * state.speed;
-        p.y += p.vy * state.speed;
+      particles.forEach((p, i) => {
+        const angle = flowAngle(p.x, p.y, t);
+        p.x += (Math.cos(angle) * BASE_SPEED + pushes[i].vx) * state.speed;
+        p.y += (Math.sin(angle) * BASE_SPEED + pushes[i].vy) * state.speed;
 
-        if (p.x < -10) p.x = W + 10;
-        if (p.x > W + 10) p.x = -10;
-        if (p.y < -10) p.y = H + 10;
-        if (p.y > H + 10) p.y = -10;
+        if (p.x < -4) p.x = W + 4;
+        if (p.x > W + 4) p.x = -4;
+        if (p.y < -4) p.y = H + 4;
+        if (p.y > H + 4) p.y = -4;
 
-        ctx.font = `${p.size}px monospace`;
-        ctx.fillStyle = `rgba(${ACCENT}, ${p.opacity})`;
-        ctx.fillText(p.char, p.x, p.y);
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(216, 216, 216, ${p.opacity})`;
+        ctx.fill();
       });
 
       rafId = requestAnimationFrame(draw);
@@ -173,7 +129,6 @@ export default function CoolInteraction() {
       cancelAnimationFrame(rafId);
       canvas.removeEventListener('mouseenter', onMouseEnter);
       canvas.removeEventListener('mouseleave', onMouseLeave);
-      canvas.removeEventListener('mousedown', onMouseDown);
       canvas.removeEventListener('mouseup', onMouseUp);
     };
   }, []);
