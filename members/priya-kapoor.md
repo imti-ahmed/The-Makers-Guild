@@ -4,8 +4,8 @@ url: https://www.priyakapoor.xyz
 tags: [writing, design, indie]
 email: priya@priyakapoor.xyz
 nickname: 
-widget:
-  style: 
-  color: 
-  size: 
+widget: 
+bgColor: 
+textColor: 
+info: 
 ---

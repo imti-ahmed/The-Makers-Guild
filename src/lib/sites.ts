@@ -10,11 +10,11 @@ export interface Site {
   url: string;
   tags: string[];
   email: string;
-  widget: {
-    style: string;
-    color: string;
-    size: string;
-  };
+  nickname: string;
+  widget: string;
+  bgColor: string;
+  textColor: string;
+  info: string;
 }
 
 export function getSites(): Site[] {
@@ -33,11 +33,11 @@ export function getSites(): Site[] {
       url: data.url ?? '',
       tags: data.tags ?? [],
       email: data.email ?? '',
-      widget: {
-        style: data.widget?.style ?? '',
-        color: data.widget?.color ?? '',
-        size: data.widget?.size ?? '',
-      },
+      nickname: data.nickname ?? '',
+      widget: data.widget ?? '',
+      bgColor: data.bgColor ?? '',
+      textColor: data.textColor ?? '',
+      info: data.info ?? '',
     };
   });
 }

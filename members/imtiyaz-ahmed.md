@@ -4,8 +4,8 @@ url: https://www.imtiyazahmed.com
 tags: [design, dev, indie]
 email: designer.imtiyaz@gmail.com
 nickname: 
-widget:
-  style: 
-  color: 
-  size: 
+widget: 
+bgColor: 
+textColor: 
+info: 
 ---
