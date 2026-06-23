@@ -34,6 +34,7 @@ Extracted from Figma. All values go in `globals.css` as CSS custom properties.
 | `--color-text-primary` | `#d8d8d8` | Primary body text |
 | `--color-text-secondary` | `#676767` | Muted / secondary text |
 | `--color-accent` | `#9d894e` | Accent — gold, used sparingly |
+| `--color-white` | `#ffffff` | Pure white — button labels, high-contrast text |
 
 ## Typography Tokens
 
@@ -41,7 +42,8 @@ Extracted from Figma. All values go in `globals.css` as CSS custom properties.
 |-------|-------|-------|
 | `--font-family-base` | `'Inter', sans-serif` | All text — one font throughout |
 | `--font-weight-regular` | `400` | Body text |
-| `--font-size-sm` | `14px` | Base text size |
+| `--font-weight-bold` | `700` | Bold emphasis — used sparingly for inline highlights |
+| `--font-size-sm` | `14px` | Base text size (aligns with Figma) |
 | `--line-height-sm` | `17.52px` | Tight line height for small text |
 | `--line-height-md` | `20px` | Standard line height |
 | `--line-height-lg` | `23px` | Loose line height |
@@ -54,8 +56,12 @@ Extracted from Figma. All values go in `globals.css` as CSS custom properties.
 |-------|-------|
 | `--space-1` | `4px` |
 | `--space-2` | `8px` |
+| `--space-2-5` | `10px` |
 | `--space-3` | `12px` |
+| `--space-3-5` | `14px` |
 | `--space-4` | `16px` |
+| `--space-4-5` | `18px` |
+| `--space-5` | `20px` |
 | `--space-6` | `24px` |
 | `--space-8` | `32px` |
 | `--space-12` | `48px` |

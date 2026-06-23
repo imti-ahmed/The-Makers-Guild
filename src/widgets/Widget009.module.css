@@ -1,8 +1,8 @@
 .widget {
   display: flex;
   flex-direction: column;
-  width: 179px;
-  min-width: 140px;
+  min-width: 225px;
+  width: fit-content;
   font-family: var(--font-chivo-mono, 'Chivo Mono', monospace);
 }
 

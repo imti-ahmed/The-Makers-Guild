@@ -1,5 +1,6 @@
 .widget {
-  width: 636px;
+  min-width: 636px;
+  width: fit-content;
   height: 48px;
   background: #18181b;
   padding: 8px 16px;

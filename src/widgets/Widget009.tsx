@@ -22,12 +22,12 @@ function GuildMark({ size = 9 }: { size?: number }) {
   );
 }
 
-export default function Widget009({ slug }: Props) {
+export default function Widget009({ nickname, slug }: Props) {
   return (
     <div className={styles.widget}>
       <div className={styles.header}>
         <div className={styles.headerInner}>
-          <span className={styles.headerLabel}>THE MAKERS GUILD</span>
+          <span className={styles.headerLabel}>{nickname} - THE MAKERS GUILD</span>
           <GuildMark />
         </div>
       </div>

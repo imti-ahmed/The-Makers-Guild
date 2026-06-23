@@ -2,7 +2,8 @@
   --widget-bg: #f8f8f8;
   --widget-text: #000000;
 
-  width: 240px;
+  min-width: 240px;
+  width: fit-content;
   display: flex;
   flex-direction: column;
   font-family: var(--font-chivo-mono, 'Chivo Mono', monospace);

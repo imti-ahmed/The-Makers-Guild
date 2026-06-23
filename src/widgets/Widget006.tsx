@@ -22,13 +22,13 @@ function GuildMark({ size = 14 }: { size?: number }) {
   );
 }
 
-export default function Widget006({ slug }: Props) {
+export default function Widget006({ nickname, slug }: Props) {
   return (
     <div className={styles.widget}>
       <div className={styles.inner}>
         <div className={styles.identity}>
           <GuildMark />
-          <span className={styles.label}>MEMBER OF WEBRING - THE MAKERS GUILD</span>
+          <span className={styles.label}>{nickname} - WEBRING MEMBER - THE MAKERS GUILD</span>
         </div>
         <div className={styles.buttons}>
           <a href={`/api/ring/${slug}/prev`} className={styles.button}>BACK</a>

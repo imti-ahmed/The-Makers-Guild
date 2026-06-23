@@ -1,5 +1,6 @@
 .widget {
-  width: 240px;
+  min-width: 240px;
+  width: fit-content;
   height: 32px;
   display: flex;
   flex-direction: row;

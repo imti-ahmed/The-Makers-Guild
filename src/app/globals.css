@@ -7,11 +7,13 @@
   --color-text-primary: #d8d8d8;
   --color-text-secondary: #676767;
   --color-accent: #9d894e;
+  --color-white: #ffffff;
 
   /* Typography */
   --font-family-base: 'Inter', sans-serif;
   --font-weight-regular: 400;
-  --font-size-sm: 15px;
+  --font-weight-bold: 700;
+  --font-size-sm: 14px;
   --line-height-sm: 17.52px;
   --line-height-md: 20px;
   --line-height-lg: 23px;
@@ -19,8 +21,12 @@
   /* Spacing */
   --space-1: 4px;
   --space-2: 8px;
+  --space-2-5: 10px;
   --space-3: 12px;
+  --space-3-5: 14px;
   --space-4: 16px;
+  --space-4-5: 18px;
+  --space-5: 20px;
   --space-6: 24px;
   --space-8: 32px;
   --space-12: 48px;
