@@ -13,7 +13,7 @@ export default function AnimationSection() {
         <div className={styles.statsLeft}>
           <div className={styles.statGroup}>
             <Eye size={20} className={styles.statIcon} />
-            <p className={styles.statLabel}>Views [12345]</p>
+            <p className={styles.statLabel}>Views [000000]</p>
           </div>
           <div className={styles.statGroup}>
             <UserFocus size={20} className={styles.statIcon} />
