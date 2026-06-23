@@ -34,6 +34,7 @@ Yahoo bought the biggest webring network and let it rot. Search and feeds took o
 - The Webring widget must be embedded visibly on your homepage. That's literally how the ring works.
 - Keep your site live and updated. Inactive sites and unreachable members get removed from the ring.
 - Every submission is manually reviewed. We may accept or reject, and we'll let you know either way.
+- This is an attempt to bring cool people together. Not just discover sites — befriend the people making them. Be around builders.
 
 ---
 
