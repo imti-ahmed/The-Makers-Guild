@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from 'react';
 import { createNoise2D } from 'simplex-noise';
+import { sounds } from '@/lib/sounds';
 
 const GRID_SPACING = 8;
 const NOISE_SCALE = 0.005;
@@ -143,7 +144,7 @@ export default function DotGridBackground({ className }: { className?: string })
   }, []);
 
   return (
-    <div className={className} style={{ position: 'absolute', inset: 0 }}>
+    <div className={className} style={{ position: 'absolute', inset: 0 }} onClick={() => sounds.chime()}>
       <canvas
         ref={canvasRef}
         style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', display: 'block' }}

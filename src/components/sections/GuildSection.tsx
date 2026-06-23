@@ -1,6 +1,7 @@
 import { Plus, GitFork, CaretRight } from "@phosphor-icons/react/dist/ssr";
 import { getSites } from "@/lib/sites";
 import { withRef } from "@/lib/ref";
+import MemberLink from "@/components/MemberLink";
 import styles from "./GuildSection.module.css";
 
 export default function GuildSection() {
@@ -28,7 +29,7 @@ export default function GuildSection() {
           {members.map((member) => (
             <li key={member.slug} className={styles.memberItem}>
               <span className={styles.memberName}>{member.name}</span>
-              <a href={withRef(member.url)} target="_blank" rel="noopener noreferrer" className={styles.memberUrl}>{member.url}</a>
+              <MemberLink href={withRef(member.url)} className={styles.memberUrl}>{member.url}</MemberLink>
             </li>
           ))}
         </ol>

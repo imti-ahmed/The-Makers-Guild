@@ -1,6 +1,7 @@
 "use client";
 
 import { Plus } from "@phosphor-icons/react";
+import { sounds } from "@/lib/sounds";
 import styles from "./JoinSection.module.css";
 
 interface JoinSectionProps {
@@ -18,12 +19,12 @@ export default function JoinSection({ onJoin }: JoinSectionProps) {
       <div className={styles.content}>
         <p className={styles.bodyText}>
           Submit your site through{" "}
-          <button className={styles.formLink} onClick={onJoin}>this form here</button>
+          <button className={styles.formLink} onClick={() => { sounds.click(); onJoin?.(); }} onMouseEnter={() => sounds.hover()}>this form here</button>
           , or open a request on our GitHub. Once approved,{" "}
           <br />
           embed the widget and you&apos;re officially part of the Guild.{" "}
         </p>
-        <button className={styles.joinBtn} onClick={onJoin}>
+        <button className={styles.joinBtn} onClick={() => { sounds.click(); onJoin?.(); }} onMouseEnter={() => sounds.hover()}>
           <span className={styles.joinBtnText}>Join The Guild</span>
           <svg width="17" height="17" viewBox="0 0 14 14" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden>
             <path d="M7 7V10.5H3.5V7H7Z" />

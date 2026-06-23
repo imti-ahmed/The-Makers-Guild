@@ -89,4 +89,9 @@
   color: var(--color-accent);
   cursor: pointer;
   display: inline;
+  text-decoration: none;
+}
+
+.formLink:hover {
+  text-decoration: underline;
 }

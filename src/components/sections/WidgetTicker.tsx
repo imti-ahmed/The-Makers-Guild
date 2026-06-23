@@ -3,6 +3,7 @@
 import { CaretLeft, CaretRight } from "@phosphor-icons/react";
 import { useState } from "react";
 import WidgetRenderer from "@/widgets/WidgetRenderer";
+import { sounds } from "@/lib/sounds";
 import styles from "./WidgetTicker.module.css";
 
 const WIDGET_IDS = ["001", "002", "003", "004", "005", "006", "007", "008", "009", "010", "011"];
@@ -18,6 +19,7 @@ export default function WidgetTicker({ onSelect, nickname = "USER" }: WidgetTick
   const [animKey, setAnimKey] = useState(0);
 
   function goToPrev() {
+    sounds.swoosh();
     const prev = (selectedIndex - 1 + WIDGET_IDS.length) % WIDGET_IDS.length;
     setDirection("prev");
     setSelectedIndex(prev);
@@ -26,6 +28,7 @@ export default function WidgetTicker({ onSelect, nickname = "USER" }: WidgetTick
   }
 
   function goToNext() {
+    sounds.swoosh();
     const next = (selectedIndex + 1) % WIDGET_IDS.length;
     setDirection("next");
     setSelectedIndex(next);

@@ -4,6 +4,7 @@ import { Plus } from "@phosphor-icons/react";
 import { useState, useCallback } from "react";
 import styles from "./FormSection.module.css";
 import Toast from "@/components/Toast";
+import { sounds } from "@/lib/sounds";
 
 interface FormSectionProps {
   widgetId?: string;
@@ -73,6 +74,7 @@ export default function FormSection({
       });
       const data = await res.json();
       if (res.ok) {
+        sounds.success();
         onSuccess?.(data.slug, data.applicationNumber, data.prUrl);
       } else {
         showToast(data.error ?? "Submission failed. Please try again.");
@@ -168,11 +170,11 @@ export default function FormSection({
         </div>
 
         <div className={styles.submitRow}>
-          <button type="submit" className={styles.submitBtn} disabled={submitting}>
+          <button type="submit" className={styles.submitBtn} disabled={submitting} onMouseEnter={() => sounds.hover()}>
             {submitting ? "Submitting..." : "Submit The Application"}
             <Plus size={20} className={submitting ? styles.spinIcon : undefined} />
           </button>
-          <button type="button" className={styles.discardBtn} onClick={handleDiscard}>
+          <button type="button" className={styles.discardBtn} onClick={() => { sounds.click(); handleDiscard(); }} onMouseEnter={() => sounds.hover()}>
             Discard &amp; Go Back
           </button>
         </div>

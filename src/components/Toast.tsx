@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { Warning, CheckCircle } from "@phosphor-icons/react";
+import { sounds } from "@/lib/sounds";
 import styles from "./Toast.module.css";
 
 interface ToastProps {
@@ -18,9 +19,10 @@ export default function Toast({ message, type = "error", onClose }: ToastProps) 
 
   useEffect(() => {
     setMounted(true);
+    if (type === "success") sounds.success(); else sounds.error();
     const t = setTimeout(() => closeRef.current(), 3000);
     return () => clearTimeout(t);
-  }, []);
+  }, [type]);
 
   if (!mounted) return null;
 

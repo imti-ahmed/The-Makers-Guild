@@ -4,6 +4,7 @@ import { Copy, ArrowUpRight } from "@phosphor-icons/react";
 import { useState, useCallback } from "react";
 import styles from "./SuccessSection.module.css";
 import Toast from "@/components/Toast";
+import { sounds } from "@/lib/sounds";
 
 interface SuccessSectionProps {
   slug: string;
@@ -19,6 +20,7 @@ export default function SuccessSection({ slug, prUrl, onGoBack }: SuccessSection
   async function handleCopy() {
     try {
       await navigator.clipboard.writeText(embedCode);
+      sounds.copy();
       setCopied(true);
     } catch {
       // clipboard blocked — silently ignore
@@ -47,7 +49,7 @@ export default function SuccessSection({ slug, prUrl, onGoBack }: SuccessSection
       </div>
 
       <div className={styles.actionsRow}>
-        <button type="button" className={styles.btn} onClick={onGoBack}>
+        <button type="button" className={styles.btn} onClick={() => { sounds.click(); onGoBack?.(); }} onMouseEnter={() => sounds.hover()}>
           Go Back To Mainpage
         </button>
         <div className={styles.actionsRight}>
@@ -56,6 +58,8 @@ export default function SuccessSection({ slug, prUrl, onGoBack }: SuccessSection
             target="_blank"
             rel="noopener noreferrer"
             className={styles.btnWithIcon}
+            onClick={() => sounds.click()}
+            onMouseEnter={() => sounds.hover()}
           >
             {prUrl ? "Review Your Submission" : "Check Github Page"}
             <ArrowUpRight size={20} weight="regular" />
@@ -63,6 +67,8 @@ export default function SuccessSection({ slug, prUrl, onGoBack }: SuccessSection
           <a
             href="mailto:designer.imtiyaz@gmail.com"
             className={styles.btnWithIcon}
+            onClick={() => sounds.click()}
+            onMouseEnter={() => sounds.hover()}
           >
             Contact Guild Leader
             <ArrowUpRight size={20} weight="regular" />
