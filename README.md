@@ -16,7 +16,7 @@ Yahoo bought the biggest webring network and let it rot. Search and feeds took o
 
 ## How To Join
 
-1. Head over to [the-makers-guild.vercel.app](https://the-makers-guild.vercel.app) and fill out the application form, or open a request on [GitHub](https://github.com/imti-ahmed/The-Makers-Guild)
+1. Head over to [the-makers-guild.vercel.app](https://the-makers-guild.vercel.app) and fill out the application form
 2. Wait for review — we'll check your site meets the criteria (1–2 days)
 3. Once approved, embed the Guild widget on your homepage
 4. You're in the ring
@@ -48,6 +48,8 @@ Removing the widget or letting your site go offline will trigger an automatic re
 ## About The Author
 
 Designed, developed and maintained by [Imtiyaz Ahmed](https://www.imtiyazahmed.com) — a designer and builder who wanted a better way to discover personal sites on the internet.
+
+**GitHub:** [github.com/imti-ahmed/The-Makers-Guild](https://github.com/imti-ahmed/The-Makers-Guild)
 
 ---
 
