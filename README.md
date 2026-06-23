@@ -27,11 +27,13 @@ Yahoo bought the biggest webring network and let it rot. Search and feeds took o
 
 ## Criteria To Join
 
-- Personal sites only — no corporate pages, landing pages, or resume portfolios
-- Something worth exploring — leave a visitor informed, intrigued, or inspired
-- Open to builders, designers, developers, artists, and hobbyists
-- No illegal, adult, or disturbing content
-- Site must be live and regularly updated — inactive members are removed
+- Personal sites only. No company pages, landing pages, or portfolios dressed up as a resume.
+- Something worth the click. Leave a visitor informed, intrigued, or just thinking "huh, that's cool."
+- Open to anyone making cool stuff. Builders, vibe coders, designers, artists, developers, hobbyists. No credentials required.
+- No illegal, adult, or disturbing content. Goes without saying, but here we are.
+- The Webring widget must be embedded visibly on your homepage. That's literally how the ring works.
+- Keep your site live and updated. Inactive sites and unreachable members get removed from the ring.
+- Every submission is manually reviewed. We may accept or reject, and we'll let you know either way.
 
 ---
 

@@ -12,29 +12,30 @@ export default function RequirementSection() {
       <div className={styles.content}>
         <ul className={styles.list}>
           <li>
-            Personal sites only. No company pages, no portfolios dressed up as a resume, no landing
-            pages trying to sell you something.
+            Personal sites only. No company pages, landing pages, or portfolios dressed up as a
+            resume.
           </li>
           <li>
-            Your site should be worth the click. Ask yourself: would a total stranger leave having
-            learned something, gotten curious, or just thought &quot;huh, that&apos;s cool&quot;?
+            Something worth the click. Leave a visitor informed, intrigued, or just thinking
+            &quot;huh, that&apos;s cool.&quot;
           </li>
           <li>
-            Can be anyone - builder, vibe coder, designer, artist, developer, or just someone making
-            cool stuff in their spare time. No serious credentials required.
+            Open to anyone making cool stuff. Builders, vibe coders, designers, artists, developers,
+            hobbyists. No credentials required.
+          </li>
+          <li>No illegal, adult, or disturbing content. Goes without saying, but here we are.</li>
+          <li>
+            The Webring widget must be embedded visibly on your homepage. That&apos;s literally how
+            the ring works.
           </li>
           <li>
-            No illegal, NSFW, or disturbing content. Should go without saying, but here we are.
+            Keep your site live and updated. Inactive sites and unreachable members get removed from
+            the ring.
           </li>
           <li>
-            You must embed the Guild widget visibly on your homepage - that&apos;s literally how the
-            ring works.
+            Every submission is manually reviewed. We may accept or reject, and we&apos;ll let you
+            know either way.
           </li>
-          <li>
-            Keep your site updated. Inactive sites and unreachable members get removed from the
-            ring.
-          </li>
-          <li>We manually review every submission and may accept or reject it.</li>
         </ul>
       </div>
     </div>
