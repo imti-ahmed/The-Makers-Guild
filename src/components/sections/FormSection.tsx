@@ -170,7 +170,7 @@ export default function FormSection({
         </div>
 
         <div className={styles.submitRow}>
-          <button type="submit" className={styles.submitBtn} disabled={submitting} onMouseEnter={() => sounds.hover()}>
+          <button type="submit" className={styles.submitBtn} disabled={submitting} onClick={() => sounds.click()} onMouseEnter={() => sounds.hover()}>
             {submitting ? "Submitting..." : "Submit The Application"}
             <Plus size={20} className={submitting ? styles.spinIcon : undefined} />
           </button>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import AboutSection from "@/components/sections/AboutSection";
 import RequirementSection from "@/components/sections/RequirementSection";
 import JoinSection from "@/components/sections/JoinSection";
@@ -27,25 +27,10 @@ export default function CenterColumn() {
   const [selectedWidgetIndex, setSelectedWidgetIndex] = useState(0);
   const [successData, setSuccessData] = useState<SuccessData | null>(null);
 
-  useEffect(() => {
-    function onPopState() {
-      const path = window.location.pathname;
-      if (path === "/apply") setView("join");
-      else setView("home");
-    }
-    window.addEventListener("popstate", onPopState);
-    return () => window.removeEventListener("popstate", onPopState);
-  }, []);
-
-  function goTo(path: string, nextView: View) {
-    window.history.pushState(null, "", path);
-    setView(nextView);
-  }
-
   function handleDiscard() {
     setNickname("USER");
     setSelectedWidgetIndex(0);
-    goTo("/", "home");
+    setView("home");
   }
 
   function handleSuccess(slug: string, applicationNumber: number, prUrl?: string) {
@@ -100,7 +85,7 @@ export default function CenterColumn() {
     <>
       <AboutSection />
       <RequirementSection />
-      <JoinSection onJoin={() => goTo("/apply", "join")} />
+      <JoinSection onJoin={() => setView("join")} />
     </>
   );
 }
