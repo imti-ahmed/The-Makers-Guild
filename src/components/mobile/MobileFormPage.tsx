@@ -82,8 +82,6 @@ export default function MobileFormPage({
 
   const widgetId = WIDGET_IDS[selectedWidgetIndex];
   const tickerScale = getMobileTickerScale(widgetId);
-  const { width: widgetNaturalWidth, height: widgetNaturalHeight } =
-    WIDGET_SIZES[widgetId] ?? DEFAULT_WIDGET_SIZE;
 
   const slideClass = animKey > 0
     ? (direction === "next" ? styles.slideFromRight : styles.slideFromLeft)
@@ -168,31 +166,18 @@ export default function MobileFormPage({
               <CaretLeft size={18} />
             </button>
             <div className={styles.tickerDisplay}>
-              {/* Outer box: occupies the scaled visual dimensions so flex centers correctly */}
               <div style={{
-                width: Math.round(widgetNaturalWidth * tickerScale),
-                height: Math.round(widgetNaturalHeight * tickerScale),
-                position: "relative",
+                transform: `scale(${tickerScale})`,
+                transformOrigin: "center center",
                 flexShrink: 0,
               }}>
-                {/* Inner: natural size, scaled from top-left — no layout bleed */}
-                <div style={{
-                  position: "absolute",
-                  top: 0,
-                  left: 0,
-                  width: widgetNaturalWidth,
-                  height: widgetNaturalHeight,
-                  transform: `scale(${tickerScale})`,
-                  transformOrigin: "top left",
-                }}>
-                  <div key={animKey} className={slideClass}>
-                    <div onClick={(e) => e.preventDefault()}>
-                      <WidgetRenderer
-                        widgetId={widgetId}
-                        nickname={nickname}
-                        slug="preview"
-                      />
-                    </div>
+                <div key={animKey} className={slideClass}>
+                  <div onClick={(e) => e.preventDefault()}>
+                    <WidgetRenderer
+                      widgetId={widgetId}
+                      nickname={nickname}
+                      slug="preview"
+                    />
                   </div>
                 </div>
               </div>
