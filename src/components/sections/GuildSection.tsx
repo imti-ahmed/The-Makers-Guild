@@ -29,7 +29,7 @@ export default function GuildSection() {
     <div className={styles.container}>
       {/* Guild Info */}
       <div className={styles.infoHeader}>
-        <p className={styles.infoHeaderTitle}>The Guild Members</p>
+        <p className={styles.infoHeaderTitle}>Active Guild Members</p>
         <Plus size={20} className={styles.infoHeaderIcon} />
       </div>
 

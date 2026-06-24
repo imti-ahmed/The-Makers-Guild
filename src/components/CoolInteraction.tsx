@@ -22,8 +22,9 @@ export default function CoolInteraction() {
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    const W = canvas.offsetWidth;
-    const H = canvas.offsetHeight;
+    const rect = canvas.getBoundingClientRect();
+    const W = rect.width || canvas.offsetWidth || 300;
+    const H = rect.height || canvas.offsetHeight || 216;
     canvas.width = W;
     canvas.height = H;
 
