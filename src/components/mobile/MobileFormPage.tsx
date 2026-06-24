@@ -11,12 +11,12 @@ import MobileHeader, { FORM_TABS } from "./MobileHeader";
 import styles from "./MobileFormPage.module.css";
 
 const WIDGET_IDS = ["001", "002", "003", "004", "005", "006", "007", "008", "009", "010", "011"];
-const MOBILE_TICKER_TARGET = 290;
+const MOBILE_TICKER_TARGET = 260;
 
 function getMobileTickerScale(widgetId: string): number {
   const { width } = WIDGET_SIZES[widgetId] ?? DEFAULT_WIDGET_SIZE;
   const scale = MOBILE_TICKER_TARGET / width;
-  return Math.max(0.55, Math.min(1.4, scale));
+  return Math.max(0.4, Math.min(1.4, scale));
 }
 
 function ensureHash(val: string): string {
@@ -168,21 +168,31 @@ export default function MobileFormPage({
               <CaretLeft size={18} />
             </button>
             <div className={styles.tickerDisplay}>
-              <div
-                style={{
-                  transform: `scale(${tickerScale})`,
-                  transformOrigin: "center",
+              {/* Outer box: occupies the scaled visual dimensions so flex centers correctly */}
+              <div style={{
+                width: Math.round(widgetNaturalWidth * tickerScale),
+                height: Math.round(widgetNaturalHeight * tickerScale),
+                position: "relative",
+                flexShrink: 0,
+              }}>
+                {/* Inner: natural size, scaled from top-left — no layout bleed */}
+                <div style={{
+                  position: "absolute",
+                  top: 0,
+                  left: 0,
                   width: widgetNaturalWidth,
                   height: widgetNaturalHeight,
-                }}
-              >
-                <div key={animKey} className={slideClass}>
-                  <div onClick={(e) => e.preventDefault()}>
-                    <WidgetRenderer
-                      widgetId={widgetId}
-                      nickname={nickname}
-                      slug="preview"
-                    />
+                  transform: `scale(${tickerScale})`,
+                  transformOrigin: "top left",
+                }}>
+                  <div key={animKey} className={slideClass}>
+                    <div onClick={(e) => e.preventDefault()}>
+                      <WidgetRenderer
+                        widgetId={widgetId}
+                        nickname={nickname}
+                        slug="preview"
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
