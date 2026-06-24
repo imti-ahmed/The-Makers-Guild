@@ -1,7 +1,7 @@
 ---
 name: Imtiyaz Ahmed
 nickname: AHMED
-url: "https://www.framer.com"
+url: "https://www.imtiyazahmed.com/bugs"
 email: designer.imtiyaz@gmail.com
 tags: [Designer]
 bgColor: 
