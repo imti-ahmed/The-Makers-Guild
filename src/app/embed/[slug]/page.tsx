@@ -19,12 +19,12 @@ export default async function EmbedPage({
 }) {
   const { slug } = await params;
   const { scale: scaleParam } = await searchParams;
-  const scale = Math.max(0.1, Math.min(5, parseFloat(scaleParam ?? '1') || 1));
 
   const filePath = path.join(process.cwd(), 'members', `${slug}.md`);
 
   if (!fs.existsSync(filePath)) {
-    const { width, height } = DEFAULT_WIDGET_SIZE;
+    const { width, height, defaultScale } = DEFAULT_WIDGET_SIZE;
+    const scale = Math.max(0.1, Math.min(5, parseFloat(scaleParam ?? String(defaultScale)) || defaultScale));
     return (
       <>
         <style>{`html,body{margin:0;padding:0;background:transparent;width:${Math.round(width*scale)}px;height:${Math.round(height*scale)}px;overflow:hidden;}`}</style>
@@ -38,9 +38,11 @@ export default async function EmbedPage({
   const { data } = matter(fs.readFileSync(filePath, 'utf-8'));
 
   const widgetId = data.widget ? String(data.widget).padStart(3, '0') : null;
+  const sizeEntry = (widgetId ? WIDGET_SIZES[widgetId] : null) ?? DEFAULT_WIDGET_SIZE;
+  const { width, height, defaultScale } = sizeEntry;
+  const scale = Math.max(0.1, Math.min(5, parseFloat(scaleParam ?? String(defaultScale)) || defaultScale));
 
   if (!widgetId) {
-    const { width, height } = DEFAULT_WIDGET_SIZE;
     return (
       <>
         <style>{`html,body{margin:0;padding:0;background:transparent;width:${Math.round(width*scale)}px;height:${Math.round(height*scale)}px;overflow:hidden;}`}</style>
@@ -50,8 +52,6 @@ export default async function EmbedPage({
       </>
     );
   }
-
-  const { width, height } = WIDGET_SIZES[widgetId] ?? DEFAULT_WIDGET_SIZE;
 
   return (
     <>
