@@ -118,7 +118,7 @@ export default function MobileSuccessPage({
           </div>
 
           {/* Action buttons */}
-          <div className={styles.actionBlock}>
+          <div className={styles.submitSection}>
             <button
               type="button"
               className={styles.actionBtn}
@@ -127,8 +127,6 @@ export default function MobileSuccessPage({
             >
               Go Back To Mainpage
             </button>
-          </div>
-          <div className={styles.actionBlock}>
             <a
               href={prUrl ?? "https://github.com/imti-ahmed/The-Makers-Guild"}
               target="_blank"
@@ -140,8 +138,6 @@ export default function MobileSuccessPage({
               {prUrl ? "Review Your Submission" : "Check Github Page"}
               <ArrowUpRight size={20} weight="regular" />
             </a>
-          </div>
-          <div className={styles.actionBlock}>
             <a
               href="mailto:designer.imtiyaz@gmail.com"
               className={styles.actionBtnLink}
