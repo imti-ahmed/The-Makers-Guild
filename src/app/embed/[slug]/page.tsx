@@ -31,6 +31,7 @@ export default async function EmbedPage({
         <div style={{ width, height, transform: `scale(${scale})`, transformOrigin: 'top left', overflow: 'hidden' }}>
           <WidgetPending slug={slug} />
         </div>
+      <script dangerouslySetInnerHTML={{ __html: `(function(){function s(){window.parent.postMessage({type:'tmg-resize',width:document.documentElement.scrollWidth,height:document.documentElement.scrollHeight},'*');}if(document.readyState==='complete'){s();}else{window.addEventListener('load',s);}})();` }} />
       </>
     );
   }
@@ -49,6 +50,7 @@ export default async function EmbedPage({
         <div style={{ width, height, transform: `scale(${scale})`, transformOrigin: 'top left', overflow: 'hidden' }}>
           <WidgetPending slug={slug} />
         </div>
+      <script dangerouslySetInnerHTML={{ __html: `(function(){function s(){window.parent.postMessage({type:'tmg-resize',width:document.documentElement.scrollWidth,height:document.documentElement.scrollHeight},'*');}if(document.readyState==='complete'){s();}else{window.addEventListener('load',s);}})();` }} />
       </>
     );
   }
@@ -65,6 +67,7 @@ export default async function EmbedPage({
           textColor={ensureHash(data.textColor || '')}
         />
       </div>
+      <script dangerouslySetInnerHTML={{ __html: `(function(){function s(){window.parent.postMessage({type:'tmg-resize',width:document.documentElement.scrollWidth,height:document.documentElement.scrollHeight},'*');}if(document.readyState==='complete'){s();}else{window.addEventListener('load',s);}})();` }} />
     </>
   );
 }
