@@ -38,8 +38,9 @@ export default function DotGridBackground({ className }: { className?: string })
     const mouse = { x: -9999, y: -9999 };
 
     const buildGrid = () => {
-      const W = canvas.offsetWidth;
-      const H = canvas.offsetHeight;
+      const rect = canvas.getBoundingClientRect();
+      const W = rect.width || canvas.offsetWidth;
+      const H = rect.height || canvas.offsetHeight;
       canvas.width = W;
       canvas.height = H;
       ctx.imageSmoothingEnabled = false;
@@ -129,10 +130,30 @@ export default function DotGridBackground({ className }: { className?: string })
       ripples.push({ x, y, radius: 0, maxRadius: Math.sqrt(canvas.width ** 2 + canvas.height ** 2) });
     };
 
+    const onTouchMove = (e: TouchEvent) => {
+      e.preventDefault();
+      const touch = e.touches[0];
+      const rect = canvas.getBoundingClientRect();
+      mouse.x = (touch.clientX - rect.left) * (canvas.width / rect.width);
+      mouse.y = (touch.clientY - rect.top) * (canvas.height / rect.height);
+    };
+
+    const onTouchEnd = (e: TouchEvent) => {
+      const touch = e.changedTouches[0];
+      const rect = canvas.getBoundingClientRect();
+      const x = (touch.clientX - rect.left) * (canvas.width / rect.width);
+      const y = (touch.clientY - rect.top) * (canvas.height / rect.height);
+      ripples.push({ x, y, radius: 0, maxRadius: Math.sqrt(canvas.width ** 2 + canvas.height ** 2) });
+      mouse.x = -9999;
+      mouse.y = -9999;
+    };
+
     window.addEventListener('resize', buildGrid);
     canvas.addEventListener('mousemove', onMouseMove);
     canvas.addEventListener('mouseleave', onMouseLeave);
     canvas.addEventListener('mouseup', onMouseUp);
+    canvas.addEventListener('touchmove', onTouchMove, { passive: false });
+    canvas.addEventListener('touchend', onTouchEnd);
 
     return () => {
       cancelAnimationFrame(rafId);
@@ -140,6 +161,8 @@ export default function DotGridBackground({ className }: { className?: string })
       canvas.removeEventListener('mousemove', onMouseMove);
       canvas.removeEventListener('mouseleave', onMouseLeave);
       canvas.removeEventListener('mouseup', onMouseUp);
+      canvas.removeEventListener('touchmove', onTouchMove);
+      canvas.removeEventListener('touchend', onTouchEnd);
     };
   }, []);
 

@@ -6,7 +6,7 @@ import { getSites } from "@/lib/sites";
 import { getViews } from "@/lib/db";
 import { withRef } from "@/lib/ref";
 import MemberLink from "@/components/MemberLink";
-import CoolInteraction from "@/components/CoolInteraction";
+import DotGridBackground from "@/components/DotGridBackground";
 import GalleryTrack from "@/components/sections/GalleryTrack";
 import UpdateLogButton from "@/components/sections/UpdateLogButton";
 import MobileHeader from "./MobileHeader";
@@ -92,9 +92,9 @@ export default async function MobilePage() {
           </div>
         </section>
 
-        {/* ── Cool Interaction ──────────────────────────── */}
+        {/* ── Dot Grid Interaction ──────────────────────── */}
         <div className={styles.interactionBlock}>
-          <CoolInteraction />
+          <DotGridBackground />
         </div>
 
         {/* ── Members ───────────────────────────────────── */}
