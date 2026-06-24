@@ -9,9 +9,15 @@ interface Item {
   slug: string;
 }
 
+interface GalleryTrackProps {
+  items: Item[];
+  trackClassName?: string;
+  itemClassName?: string;
+}
+
 const SPEED = 1.2; // px per frame at 60fps
 
-export default function GalleryTrack({ items }: { items: Item[] }) {
+export default function GalleryTrack({ items, trackClassName, itemClassName }: GalleryTrackProps) {
   const trackRef = useRef<HTMLDivElement>(null);
   const posRef    = useRef(0);
   const dirRef    = useRef<1 | -1>(-1); // -1 = scroll left, +1 = scroll right
@@ -48,7 +54,7 @@ export default function GalleryTrack({ items }: { items: Item[] }) {
   return (
     <div
       ref={trackRef}
-      className={styles.track}
+      className={trackClassName ?? styles.track}
       onMouseEnter={() => { pausedRef.current = true; }}
       onMouseLeave={() => {
         dirRef.current = dirRef.current === -1 ? 1 : -1;
@@ -56,7 +62,7 @@ export default function GalleryTrack({ items }: { items: Item[] }) {
       }}
     >
       {items.map((item, i) => (
-        <div key={i} className={styles.imageItem}>
+        <div key={i} className={itemClassName ?? styles.imageItem}>
           <img src={item.src} alt={item.name} />
         </div>
       ))}
